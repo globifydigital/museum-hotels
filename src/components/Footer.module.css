@@ -1,0 +1,339 @@
+/* 1920 × 739 black footer; positions are Figma coordinates relative to its top-left. */
+.footer {
+  position: relative;
+  height: calc(var(--u) * 739);
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+}
+
+.contact,
+.links {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.contact > *,
+.links > *,
+.rewards {
+  position: absolute;
+  pointer-events: auto;
+}
+
+.heading {
+  font-weight: 500;
+  font-size: max(13px, calc(var(--u) * 20));
+  line-height: calc(var(--u) * 28);
+  letter-spacing: calc(var(--u) * 2.61);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.name {
+  top: calc(var(--u) * 77);
+  left: calc(var(--u) * 60.72);
+}
+
+.location {
+  top: calc(var(--u) * 126.17);
+  left: calc(var(--u) * 61.68);
+}
+
+.reservations {
+  top: calc(var(--u) * 174.54);
+  left: calc(var(--u) * 60.72);
+}
+
+.gold {
+  left: calc(var(--u) * 62);
+  font-weight: 500;
+  font-size: max(12px, calc(var(--u) * 18));
+  line-height: calc(var(--u) * 28);
+  color: var(--sand);
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.gold:hover {
+  color: #fff;
+}
+
+.phone {
+  top: calc(var(--u) * 225.1);
+}
+
+.email {
+  top: calc(var(--u) * 263.1);
+}
+
+.map {
+  top: calc(var(--u) * 326);
+  left: calc(var(--u) * 62);
+  height: calc(var(--u) * 21);
+  border-bottom: 2px solid var(--sand);
+  font-weight: 500;
+  font-size: max(12px, calc(var(--u) * 18));
+  line-height: calc(var(--u) * 18);
+  text-transform: uppercase;
+  color: var(--sand);
+  white-space: nowrap;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.map:hover {
+  color: #fff;
+  border-color: #fff;
+}
+
+.signUp {
+  top: calc(var(--u) * 390);
+  left: calc(var(--u) * 60);
+  width: calc(var(--u) * 249);
+  height: calc(var(--u) * 57);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  font-weight: 500;
+  font-size: max(12px, calc(var(--u) * 15));
+  line-height: calc(var(--u) * 18);
+  text-transform: uppercase;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.signUp:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* With the social icons gone, About starts on the same line as the hotel name. */
+.about {
+  top: calc(var(--u) * 77);
+  left: calc(var(--u) * 854.76);
+}
+
+.list {
+  top: calc(var(--u) * 124.3);
+  left: calc(var(--u) * 854.76);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 11.49);
+}
+
+.list li:nth-child(5) {
+  margin-top: calc(var(--u) * 2.92);
+}
+
+.list a {
+  display: block;
+  font-weight: 500;
+  font-size: max(12px, calc(var(--u) * 18));
+  line-height: calc(var(--u) * 21.43);
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.list a:hover {
+  color: var(--sand);
+}
+
+/* First line centred on the same line as the column headings. */
+.rewards {
+  top: calc(var(--u) * 79.75);
+  right: calc(var(--u) * 60.74);
+  font-size: max(11px, calc(var(--u) * 15));
+  line-height: calc(var(--u) * 22.5);
+  text-align: right;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.wordmark {
+  position: absolute;
+  top: calc(var(--u) * 645.54);
+  left: calc(var(--u) * 954.64);
+  width: calc(var(--u) * 1835.6);
+  transform: translate(-50%, -50%);
+  font-family: var(--font-playfair);
+  font-weight: 400;
+  font-size: calc(var(--u) * 251);
+  line-height: calc(var(--u) * 204);
+  letter-spacing: calc(var(--u) * 1);
+  text-align: center;
+  white-space: nowrap;
+  color: var(--cream);
+  pointer-events: none;
+}
+
+/*
+ * A warm highlight sweeps across the wordmark from left to right, with a soft blurred glow
+ * (::after, same text) travelling with it. Off-screen the loop is paused (.in-view toggled by
+ * RevealObserver), and only background-position animates, so it stays cheap.
+ */
+.wordmark,
+.wordmark::after {
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: sheen 9s cubic-bezier(0.45, 0, 0.55, 1) infinite paused;
+}
+
+.wordmark {
+  color: transparent;
+  background-image: linear-gradient(
+    100deg,
+    var(--cream) 0%,
+    var(--cream) 40%,
+    #fbf3dc 45%,
+    #efdf98 50%,
+    #fbf3dc 55%,
+    var(--cream) 60%,
+    var(--cream) 100%
+  );
+}
+
+.wordmark::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  color: transparent;
+  background-image: linear-gradient(
+    100deg,
+    transparent 41%,
+    rgba(255, 236, 170, 0.4) 46.5%,
+    rgba(225, 210, 110, 0.65) 50%,
+    rgba(255, 236, 170, 0.4) 53.5%,
+    transparent 59%
+  );
+  filter: blur(0.07em);
+}
+
+.wordmark:global(.in-view),
+.wordmark:global(.in-view)::after {
+  animation-play-state: running;
+}
+
+/* 0–70 %: the light crosses the word (~3s on screen); 70–100 %: a short rest before it repeats. */
+@keyframes sheen {
+  0% {
+    background-position: 100% 0;
+  }
+  70%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+@media (max-width: 1199px) {
+  .footer {
+    height: auto;
+    padding: 56px 16px 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+
+  .contact,
+  .links {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    pointer-events: auto;
+  }
+
+  .contact > *,
+  .links > *,
+  .rewards {
+    position: static;
+    inset: auto;
+  }
+
+  .heading {
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: 2px;
+    white-space: normal;
+  }
+
+  .location,
+  .reservations {
+    margin-top: 14px;
+  }
+
+  .gold {
+    margin-top: 6px;
+    font-size: 15px;
+    line-height: 1.6;
+    white-space: normal;
+  }
+
+  .map {
+    margin-top: 16px;
+    height: auto;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .signUp {
+    margin-top: 24px;
+    width: 200px;
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .list {
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .list li:nth-child(5) {
+    margin-top: 0;
+  }
+
+  .list a {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .rewards {
+    grid-column: 1 / -1;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .rewards br {
+    display: none;
+  }
+
+  .wordmark {
+    position: relative;
+    grid-column: 1 / -1;
+    top: auto;
+    left: auto;
+    width: auto;
+    margin: 8px -16px 0;
+    transform: none;
+    /* "GINGER HOUSE" is ~7.3em wide, so 13vw keeps the whole word on screen. */
+    font-size: 13vw;
+    line-height: 0.82;
+    height: 0.8em;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 599px) {
+  .footer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

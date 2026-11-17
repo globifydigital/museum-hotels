@@ -1,0 +1,193 @@
+/* Positions are the Figma coordinates inside the 2577-tall section. */
+.restaurant {
+  position: relative;
+  height: calc(var(--u) * 2577);
+  margin-top: calc(var(--u) * 124);
+  background: var(--dark);
+  color: #fff;
+  overflow: hidden;
+}
+
+.figure {
+  position: absolute;
+  top: calc(var(--u) * 144);
+  left: calc(var(--u) * 55);
+  width: calc(var(--u) * 1819);
+}
+
+/* 16:9 frame; the photo sits at 2011 × 1131 inside it (cropped 110.56%). */
+.frame {
+  position: relative;
+  aspect-ratio: 1600 / 900;
+  overflow: hidden;
+}
+
+.frameImage {
+  object-fit: cover;
+  transform: scale(1.1056);
+  transition: transform 1.6s var(--ease-out);
+}
+
+.frame:hover .frameImage {
+  transform: scale(1.14);
+}
+
+.caption {
+  position: absolute;
+  top: calc(var(--u) * 1049.55);
+  left: calc(var(--u) * 4.77);
+  font-family: var(--font-overpass), sans-serif;
+  font-weight: 500;
+  font-size: max(10px, calc(var(--u) * 16));
+  line-height: calc(var(--u) * 18);
+  letter-spacing: calc(var(--u) * 1.68);
+  text-transform: uppercase;
+  color: var(--cream-muted);
+  white-space: nowrap;
+}
+
+.title {
+  position: absolute;
+  top: calc(var(--u) * 1417.98);
+  left: calc(var(--u) * 65.57);
+  width: calc(var(--u) * 665.589);
+  height: calc(var(--u) * 214.912);
+  display: flex;
+  align-items: center;
+  font-family: var(--font-gilda), serif;
+  font-weight: 400;
+  font-size: calc(var(--u) * 87);
+  line-height: normal;
+  color: var(--cream);
+}
+
+.body {
+  position: absolute;
+  top: calc(var(--u) * 1271.67);
+  left: calc(var(--u) * 859.7);
+  width: calc(var(--u) * 973.315);
+  font-size: max(12px, calc(var(--u) * 18));
+  line-height: max(20px, calc(var(--u) * 31));
+}
+
+.body p + p {
+  margin-top: max(20px, calc(var(--u) * 31));
+}
+
+.food {
+  position: absolute;
+  top: calc(var(--u) * 1935);
+  left: calc(var(--u) * 76.5);
+  display: flex;
+  gap: calc(var(--u) * 116);
+}
+
+.foodItem {
+  position: relative;
+  width: calc(var(--u) * 357);
+  height: calc(var(--u) * 378);
+  border-radius: calc(var(--u) * 12);
+  overflow: hidden;
+  background: #fff;
+}
+
+.foodItem img {
+  object-fit: cover;
+  transition: transform 1s var(--ease-out);
+}
+
+.foodItem:hover img {
+  transform: scale(1.06);
+}
+
+.menuLink {
+  position: absolute;
+  top: calc(var(--u) * 2437.48);
+  left: calc(var(--u) * 824.5);
+  font-size: max(14px, calc(var(--u) * 20));
+  line-height: calc(var(--u) * 26);
+  letter-spacing: calc(var(--u) * 0.6);
+  color: var(--amber);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.menuLink:hover {
+  color: var(--cream);
+}
+
+@media (max-width: 1199px) {
+  .restaurant {
+    height: auto;
+    margin-top: 72px;
+    padding: 56px 16px 64px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .figure,
+  .caption,
+  .title,
+  .body,
+  .food,
+  .menuLink {
+    position: static;
+    width: auto;
+    height: auto;
+  }
+
+  .caption {
+    display: block;
+    margin-top: 14px;
+    font-size: 11px;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
+  }
+
+  .title {
+    display: block;
+    margin-top: 40px;
+    font-size: clamp(40px, 8vw, 64px);
+    line-height: 1.15;
+  }
+
+  .body {
+    margin-top: 24px;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .body p + p {
+    margin-top: 20px;
+  }
+
+  .food {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .foodItem {
+    width: auto;
+    height: auto;
+    aspect-ratio: 357 / 378;
+    border-radius: 12px;
+  }
+
+  .menuLink {
+    align-self: center;
+    margin-top: 40px;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 767px) {
+  .food {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

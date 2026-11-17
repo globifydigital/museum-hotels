@@ -1,0 +1,187 @@
+.settings {
+  padding-top: calc(var(--u) * 170);
+  overflow-x: clip;
+}
+
+/* Section heading style shared by 213:90 and 213:91 (Playfair Medium 69, 18px line box). */
+.heading {
+  font-family: var(--font-playfair);
+  font-weight: 500;
+  font-size: calc(var(--u) * 69);
+  line-height: calc(var(--u) * 18);
+  letter-spacing: calc(var(--u) * 0.69);
+  text-align: center;
+  white-space: nowrap;
+  color: #000;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 104);
+  margin: calc(var(--u) * 195) 0 0 calc(var(--u) * 1);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.media {
+  position: relative;
+  flex: none;
+  width: calc(var(--u) * 1035);
+  height: calc(var(--u) * 675);
+  border-radius: calc(var(--u) * 10);
+  overflow: hidden;
+  background: #7f5858;
+}
+
+.media img {
+  object-fit: cover;
+  transition: transform 1.4s var(--ease-out);
+}
+
+.media:hover img {
+  transform: scale(1.03);
+}
+
+.text {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 33);
+  color: #000;
+}
+
+.title {
+  font-weight: 500;
+  font-size: calc(var(--u) * 31);
+  line-height: calc(var(--u) * 18);
+  letter-spacing: calc(var(--u) * 0.31);
+}
+
+.body {
+  font-size: max(13px, calc(var(--u) * 20));
+  line-height: max(20px, calc(var(--u) * 30));
+  letter-spacing: calc(var(--u) * 0.2);
+}
+
+/* Row 1: 1047 image · 173 · 638 text */
+.rowOne {
+  gap: calc(var(--u) * 173);
+}
+
+.rowOne .media {
+  width: calc(var(--u) * 1047);
+}
+
+.rowOne .text {
+  width: calc(var(--u) * 638);
+}
+
+/* Row 2: text at 64, 1035 image flush to the right edge (row is 1927 wide) */
+.rowTwo {
+  width: calc(var(--u) * 1927);
+  gap: calc(var(--u) * 170);
+  padding-left: calc(var(--u) * 64.04);
+}
+
+.rowTwo .media {
+  order: 2;
+}
+
+.rowTwo .text {
+  width: calc(var(--u) * 657.96);
+}
+
+.rowTwo .body {
+  width: calc(var(--u) * 680.31);
+}
+
+/* Row 3: 1035 image · 199 · 612 text */
+.rowThree {
+  gap: calc(var(--u) * 199);
+}
+
+.rowThree .text {
+  width: calc(var(--u) * 612);
+}
+
+.rowThree .body {
+  width: calc(var(--u) * 615.23);
+}
+
+@media (max-width: 1199px) {
+  .settings {
+    padding: 80px 16px 0;
+  }
+
+  .heading {
+    font-size: clamp(30px, 6.5vw, 52px);
+    line-height: 1.15;
+    white-space: normal;
+  }
+
+  .rows {
+    margin: 40px 0 0;
+    gap: 48px;
+  }
+
+  .row,
+  .rowOne,
+  .rowTwo,
+  .rowThree {
+    width: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding: 0;
+  }
+
+  .media,
+  .rowOne .media {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1047 / 675;
+    border-radius: 10px;
+  }
+
+  .rowTwo .media {
+    order: 0;
+  }
+
+  .text,
+  .rowOne .text,
+  .rowTwo .text,
+  .rowThree .text {
+    width: auto;
+    gap: 12px;
+  }
+
+  .title {
+    font-size: clamp(20px, 4vw, 28px);
+    line-height: 1.25;
+  }
+
+  .body,
+  .rowTwo .body,
+  .rowThree .body {
+    width: auto;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+}
+
+/* In the design this heading's text box starts at x 270.5 (about 12px left of centre). */
+.settings > .heading {
+  margin-left: calc(var(--u) * 270.5);
+  text-align: left;
+}
+
+@media (max-width: 1199px) {
+  .settings > .heading {
+    margin-left: 0;
+    text-align: center;
+  }
+}

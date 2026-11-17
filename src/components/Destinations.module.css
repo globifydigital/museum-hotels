@@ -1,0 +1,138 @@
+.destinations {
+  padding-top: calc(var(--u) * 194);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, calc(var(--u) * 566.66));
+  column-gap: calc(var(--u) * 51);
+  margin: calc(var(--u) * 167) 0 0 calc(var(--u) * 60);
+}
+
+.card {
+  position: relative;
+  height: calc(var(--u) * 887);
+  text-align: center;
+  color: #000;
+}
+
+.media {
+  position: relative;
+  height: calc(var(--u) * 650);
+  border-radius: calc(var(--u) * 10);
+  overflow: hidden;
+}
+
+.media img {
+  object-fit: cover;
+  transition: transform 1.4s var(--ease-out);
+}
+
+.card:hover .media img {
+  transform: scale(1.04);
+}
+
+.title {
+  position: absolute;
+  top: calc(var(--u) * 680);
+  left: 0;
+  right: 0;
+  font-weight: 500;
+  font-size: max(13px, calc(var(--u) * 21));
+  line-height: calc(var(--u) * 25.2);
+  letter-spacing: calc(var(--u) * 3);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.card:nth-child(2) .title {
+  top: calc(var(--u) * 679);
+  font-size: max(13px, calc(var(--u) * 20.3));
+}
+
+.card:nth-child(3) .title {
+  font-size: max(13px, calc(var(--u) * 20.7));
+}
+
+.body {
+  position: absolute;
+  top: calc(var(--u) * 724.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: max(12px, calc(var(--u) * 16));
+  line-height: max(20px, calc(var(--u) * 28.8));
+}
+
+/* Per-card text boxes from the design so lines wrap where they do in Figma. */
+.card:nth-child(1) .body {
+  height: calc(var(--u) * 114);
+  left: calc(var(--u) * 43.25);
+  right: calc(var(--u) * 43.07);
+}
+
+.card:nth-child(2) .body {
+  height: calc(var(--u) * 77.6);
+  left: calc(var(--u) * 34.61);
+  right: calc(var(--u) * 33.27);
+}
+
+.card:nth-child(3) .body {
+  height: calc(var(--u) * 103.37);
+  /* 2px narrower than the Figma box (centred) so lines break where Figma breaks them. */
+  left: calc(var(--u) * 38.21);
+  right: calc(var(--u) * 37.06);
+}
+
+@media (max-width: 1199px) {
+  .destinations {
+    padding: 80px 16px 0;
+  }
+
+  .grid {
+    margin: 40px 0 0;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 20px;
+  }
+
+  .card {
+    height: auto;
+  }
+
+  .media {
+    height: auto;
+    aspect-ratio: 566.66 / 650;
+    border-radius: 10px;
+  }
+
+  .title,
+  .body,
+  .card:nth-child(n) .title,
+  .card:nth-child(n) .body {
+    position: static;
+    display: block;
+    height: auto;
+    white-space: normal;
+  }
+
+  .title,
+  .card:nth-child(n) .title {
+    margin-top: 20px;
+    font-size: 17px;
+    line-height: 1.4;
+    letter-spacing: 2.5px;
+  }
+
+  .body {
+    margin-top: 10px;
+    padding: 0 8px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,175 @@
+.hero {
+  position: relative;
+  height: calc(var(--u) * 1258);
+  overflow: hidden;
+  background: #222;
+  color: var(--cream);
+}
+
+/* The picture is 1533 tall inside the 1258 section (clipped at the bottom), with a 45% black wash. */
+.media {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: calc(var(--u) * 1533);
+}
+
+.media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.text {
+  position: absolute;
+  top: calc(var(--u) * 338.56);
+  left: calc(var(--u) * 606.89);
+  width: calc(var(--u) * 733.22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--u) * 8);
+  text-align: center;
+}
+
+.eyebrow {
+  width: 100%;
+  font-size: max(9px, calc(var(--u) * 12));
+  line-height: calc(var(--u) * 18);
+  letter-spacing: calc(var(--u) * 1.68);
+  text-transform: uppercase;
+}
+
+.title {
+  width: 100%;
+  font-family: var(--font-playfair);
+  font-weight: 400;
+  font-size: calc(var(--u) * 192);
+  line-height: calc(var(--u) * 204);
+  letter-spacing: calc(var(--u) * 1);
+}
+
+@media (max-width: 1199px) {
+  .hero {
+    height: auto;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 40px;
+    padding: 140px 16px 24px;
+  }
+
+  .media {
+    height: 100%;
+  }
+
+  .text {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    gap: 12px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    line-height: 1.6;
+    letter-spacing: 1.5px;
+  }
+
+  .title {
+    font-size: clamp(64px, 16vw, 150px);
+    line-height: 1.06;
+  }
+}
+
+/* Page-load entrance: the photo settles from a slight zoom while the copy rises in line by line. */
+.media {
+  animation: settle 2.8s cubic-bezier(0.2, 0.7, 0.1, 1) both;
+}
+
+.text > * {
+  animation: rise 1.3s var(--ease-out) both;
+}
+
+.text > :nth-child(1) {
+  animation-delay: 0.25s;
+}
+
+/* The title has no fade of its own: each word slides up out of a mask. */
+.text > .title {
+  animation: none;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.word > span {
+  display: inline-block;
+  animation: wordUp 1.4s cubic-bezier(0.2, 0.75, 0.1, 1) 0.35s both;
+}
+
+.word + .word > span {
+  animation-delay: 0.5s;
+}
+
+@keyframes wordUp {
+  from {
+    translate: 0 105%;
+  }
+}
+
+.text > :nth-child(3) {
+  animation-delay: 0.75s;
+}
+
+@keyframes settle {
+  from {
+    scale: 1.12;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 40px;
+  }
+}
+
+/* Reduced motion: the hero still fades in, without the zoom or the sliding. */
+@media (prefers-reduced-motion: reduce) {
+  .media {
+    animation: none;
+  }
+
+  .text > *,
+  .word > span {
+    animation-name: fadeIn;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Blur-in text (globals.css): the hero copy uses it instead of the rise / word-mask entrance above. */
+.text > :global(.blur-text),
+.title:global(.blur-text) .word > span {
+  animation: none;
+}
+
+.title:global(.blur-text) .word {
+  overflow: visible;
+}

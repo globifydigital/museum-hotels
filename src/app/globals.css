@@ -1,0 +1,238 @@
+/*
+ * Ginger House — Figma file "museum-hotel", page "accepted", frame 213:23 (1920 wide).
+ * Desktop layouts use design pixels × --u, so the page scales proportionally from 1200px to 1920px.
+ * Below 1200px each section switches to a stacked tablet / mobile layout.
+ */
+:root {
+  --u: calc(min(100vw, 1920px) / 1920);
+
+  --gold: #e1d26e;
+  --gold-hover: #d3c25a;
+  --ink: #1d1b18;
+  --ink-muted: rgba(29, 27, 24, 0.66);
+  --ink-line: rgba(29, 27, 24, 0.2);
+  --dark: #1e1b17;
+  --cream: #f3eee4;
+  --cream-muted: rgba(243, 238, 228, 0.66);
+  --bronze: #865d1e;
+  --sand: #ad894c;
+  --amber: #d8a657;
+
+  --font-playfair: var(--font-playfair-display), "Times New Roman", serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --ease-out: cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #000;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+figure,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * Motion. Start states only apply once JS is running (html.js), and every animation uses the
+ * individual `translate` / `scale` properties, so it never fights a component's own `transform`
+ * and the resting layout is exactly the static design.
+ * ------------------------------------------------------------------------------------------- */
+.js .reveal {
+  opacity: 0;
+  translate: 0 24px;
+  transition:
+    opacity 0.7s var(--ease-out) var(--d, 0ms),
+    translate 0.8s var(--ease-out) var(--d, 0ms);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  translate: none;
+}
+
+/* Images wipe up from the bottom while the photo settles from a slight zoom. */
+.js .reveal-img {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.3s cubic-bezier(0.65, 0, 0.2, 1) var(--d, 0ms);
+}
+
+.js .reveal-img img {
+  scale: 1.18;
+  transition:
+    scale 1.8s var(--ease-out) var(--d, 0ms),
+    transform 1.2s var(--ease-out);
+}
+
+.js .reveal-img.is-visible {
+  clip-path: inset(0 0 0 0);
+}
+
+.js .reveal-img.is-visible img {
+  scale: 1;
+}
+
+/* Children of a stagger group rise one after another. */
+.js .reveal-stagger > * {
+  opacity: 0;
+  translate: 0 20px;
+  transition:
+    opacity 0.8s var(--ease-out),
+    translate 1s var(--ease-out);
+}
+
+.js .reveal-stagger.is-visible > * {
+  opacity: 1;
+  translate: none;
+}
+
+.reveal-stagger > :nth-child(2) { transition-delay: 90ms; }
+.reveal-stagger > :nth-child(3) { transition-delay: 180ms; }
+.reveal-stagger > :nth-child(4) { transition-delay: 270ms; }
+.reveal-stagger > :nth-child(5) { transition-delay: 360ms; }
+.reveal-stagger > :nth-child(6) { transition-delay: 450ms; }
+.reveal-stagger > :nth-child(7) { transition-delay: 540ms; }
+.reveal-stagger > :nth-child(8) { transition-delay: 630ms; }
+
+
+/* Page-load entrance for the hero. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    translate: 0 40px;
+  }
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    translate: 0 -24px;
+  }
+}
+
+@keyframes settle {
+  from {
+    scale: 1.12;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Reduced motion (e.g. Windows "Animation effects" off): keep the soft fades, drop all movement. */
+  .js .reveal,
+  .js .reveal-stagger > * {
+    translate: none !important;
+  }
+
+  .js .reveal-img {
+    clip-path: none !important;
+    opacity: 0;
+    transition: opacity 1s ease var(--d, 0ms) !important;
+  }
+
+  .js .reveal-img.is-visible {
+    opacity: 1;
+  }
+
+  .js .reveal-img img {
+    scale: none !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------
+ * Blur-in text (Framer-style): each word of a .blur-text element starts blurred and transparent,
+ * then sharpens into place one after another. Words are split by RevealObserver.
+ * To revert, swap "blur-text" back to "reveal" in the components.
+ * ------------------------------------------------------------------------------------------- */
+.js .blur-text:not([data-split]) {
+  opacity: 0;
+}
+
+/* Words stay inline so the text wraps and kerns exactly as without the effect (no layout shift). */
+.js .blur-text .bw {
+  opacity: 0;
+  filter: blur(8px);
+  transition:
+    opacity 0.35s ease-out,
+    filter 0.4s ease-out;
+  transition-delay: calc(var(--d, 0ms) + var(--wd, 0ms));
+}
+
+.js .blur-text.is-visible .bw {
+  opacity: 1;
+  filter: blur(0);
+}

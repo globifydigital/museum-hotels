@@ -1,0 +1,233 @@
+/* Banner 1799 × 928 at x 62; photo row 1704 wide at x 108, 584 below the banner top. */
+.wellness {
+  position: relative;
+  height: calc(var(--u) * 1003);
+  margin-top: calc(var(--u) * 69);
+}
+
+.banner {
+  position: absolute;
+  top: 0;
+  left: calc(var(--u) * 61);
+  width: calc(var(--u) * 1799);
+  height: calc(var(--u) * 928);
+  border-radius: calc(var(--u) * 10);
+  overflow: hidden;
+  background: #2a1a12;
+}
+
+.bannerImage {
+  object-fit: cover;
+}
+
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+}
+
+.head {
+  position: absolute;
+  z-index: 1;
+  top: calc(var(--u) * 142.18);
+  left: 50%;
+  width: calc(var(--u) * 774);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--u) * 80);
+}
+
+.title {
+  font-family: var(--font-playfair);
+  font-weight: 500;
+  font-size: calc(var(--u) * 80);
+  line-height: calc(var(--u) * 18);
+  letter-spacing: calc(var(--u) * 0.8);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--u) * 244);
+  height: calc(var(--u) * 52);
+  border-radius: 4px;
+  background: #fff;
+  color: #020101;
+  font-weight: 500;
+  font-size: max(12px, calc(var(--u) * 17));
+  line-height: calc(var(--u) * 18);
+  letter-spacing: calc(var(--u) * 0.17);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.button:hover {
+  background: var(--gold);
+}
+
+.items {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.item {
+  pointer-events: auto;
+}
+
+.photo {
+  position: absolute;
+  top: calc(var(--u) * 584);
+  width: calc(var(--u) * 506);
+  height: calc(var(--u) * 419);
+  border-radius: calc(var(--u) * 10);
+  overflow: hidden;
+  background: #9c2d2d;
+}
+
+.photo img {
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-out);
+}
+
+.item:hover .photo img {
+  transform: scale(1.05);
+}
+
+.item1 .photo {
+  left: calc(var(--u) * 107);
+}
+
+.item2 .photo {
+  left: calc(var(--u) * 706);
+}
+
+.item3 .photo {
+  left: calc(var(--u) * 1305);
+}
+
+/* Labels sit on the banner above each photo (centres from the design). */
+.label {
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  font-weight: 500;
+  font-size: max(13px, calc(var(--u) * 24));
+  line-height: calc(var(--u) * 18);
+  letter-spacing: calc(var(--u) * 0.24);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.item1 .label {
+  left: calc(var(--u) * 365.83);
+  top: calc(var(--u) * 538.83);
+  font-size: max(13px, calc(var(--u) * 25));
+  letter-spacing: calc(var(--u) * 0.25);
+}
+
+.item2 .label {
+  left: calc(var(--u) * 949.72);
+  top: calc(var(--u) * 537.66);
+}
+
+.item3 .label {
+  left: calc(var(--u) * 1571.28);
+  top: calc(var(--u) * 545.07);
+}
+
+@media (max-width: 1199px) {
+  .wellness {
+    height: auto;
+    margin: 80px 16px 0;
+  }
+
+  .banner {
+    position: relative;
+    left: auto;
+    width: auto;
+    height: auto;
+    min-height: 320px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 56px 20px;
+  }
+
+  .head {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    transform: none;
+    gap: 28px;
+  }
+
+  .title {
+    font-size: clamp(30px, 6.5vw, 52px);
+    line-height: 1.15;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .button {
+    width: 220px;
+    height: 48px;
+    font-size: 15px;
+  }
+
+  .items {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .photo,
+  .item1 .photo,
+  .item2 .photo,
+  .item3 .photo {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    height: auto;
+    aspect-ratio: 506 / 419;
+    border-radius: 10px;
+  }
+
+  .label,
+  .item1 .label,
+  .item2 .label,
+  .item3 .label {
+    position: static;
+    order: 2;
+    transform: none;
+    font-size: 15px;
+    line-height: 1.4;
+    letter-spacing: 1px;
+    color: #000;
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .items {
+    grid-template-columns: 1fr;
+  }
+}

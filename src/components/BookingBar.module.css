@@ -1,0 +1,291 @@
+/* 1809 × 224, 56 from the hero bottom, rgba(255,255,255,.31) frosted glass, radius 20. */
+.panel {
+  position: absolute;
+  left: calc(50% + var(--u) * 9.5);
+  bottom: calc(var(--u) * 56);
+  width: calc(var(--u) * 1809);
+  height: calc(var(--u) * 224);
+  transform: translateX(-50%);
+  border-radius: calc(var(--u) * 20);
+  background: rgba(255, 255, 255, 0.31);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
+}
+
+.row {
+  position: absolute;
+  top: calc(var(--u) * 78);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  gap: calc(var(--u) * 36);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 10);
+  width: calc(var(--u) * 204);
+}
+
+.label {
+  font-size: max(11px, calc(var(--u) * 16));
+  line-height: calc(var(--u) * 18);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: calc(var(--u) * 216);
+  height: calc(var(--u) * 48);
+  border: 1px solid #777;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #000;
+  font-weight: 500;
+  font-size: max(11px, calc(var(--u) * 14));
+  white-space: nowrap;
+}
+
+.date {
+  padding: 0 calc(var(--u) * 40) 0 calc(var(--u) * 11.5);
+  background-image: url("/icons/calendar.png");
+  background-repeat: no-repeat;
+  background-size: calc(var(--u) * 22) calc(var(--u) * 26);
+  background-position: right calc(var(--u) * 10) center;
+}
+
+.date:focus-within {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Native date input stretched invisibly over the field: opens the browser's date picker. */
+.dateInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.dateInput::-webkit-calendar-picker-indicator {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0 calc(var(--u) * 40) 0 calc(var(--u) * 18);
+  cursor: pointer;
+}
+
+.chevron {
+  background-image: url("/icons/chevron-down.png");
+  background-repeat: no-repeat;
+  background-size: calc(var(--u) * 22) calc(var(--u) * 17);
+  background-position: right calc(var(--u) * 11) center;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 29);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--u) * 216);
+  height: calc(var(--u) * 48);
+  border-radius: 4px;
+  background: var(--gold);
+  color: #000;
+  font-weight: 500;
+  font-size: max(11px, calc(var(--u) * 14));
+  line-height: 1;
+  white-space: nowrap;
+  transition: background-color 0.25s ease;
+}
+
+.button:hover {
+  background: var(--gold-hover);
+}
+
+.message {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--u) * 20);
+  padding: 0 calc(var(--u) * 73.5);
+  font-size: max(12px, calc(var(--u) * 14));
+  line-height: 1.4;
+  color: #fff;
+  text-align: center;
+}
+
+.message:empty {
+  display: none;
+}
+
+@media (max-width: 1199px) {
+  .panel {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    transform: none;
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .row {
+    position: static;
+    transform: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 16px;
+  }
+
+  .field {
+    width: auto;
+    gap: 8px;
+  }
+
+  .label {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+
+  .control,
+  .button {
+    width: 100%;
+    height: 46px;
+    font-size: 14px;
+  }
+
+  .date {
+    padding: 0 40px 0 12px;
+    background-size: 18px 21px;
+    background-position: right 12px center;
+  }
+
+  .select {
+    padding: 0 40px 0 14px;
+  }
+
+  .chevron {
+    background-size: 18px 14px;
+    background-position: right 12px center;
+  }
+
+  .buttons {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .message {
+    position: static;
+    padding: 14px 0 0;
+  }
+}
+
+/* Phones: dates side by side, guests / child / rooms in one row of three, buttons side by side. */
+@media (max-width: 599px) {
+  .panel {
+    padding: 16px;
+  }
+
+  .row {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 14px 10px;
+  }
+
+  .row > :nth-child(1),
+  .row > :nth-child(2) {
+    grid-column: span 3;
+  }
+
+  .row > :nth-child(3),
+  .row > :nth-child(4),
+  .row > :nth-child(5) {
+    grid-column: span 2;
+  }
+
+  .field {
+    gap: 6px;
+  }
+
+  .label {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+
+  .control,
+  .button {
+    height: 44px;
+    font-size: 13px;
+  }
+
+  .button {
+    padding: 0 6px;
+    font-size: 12px;
+  }
+
+  .select {
+    padding: 0 30px 0 12px;
+  }
+
+  .chevron {
+    background-size: 14px 11px;
+    background-position: right 10px center;
+  }
+
+  .date {
+    padding: 0 34px 0 10px;
+    background-size: 16px 19px;
+    background-position: right 10px center;
+  }
+
+  .buttons {
+    gap: 10px;
+  }
+}
+
+.panel {
+  animation: panelRise 1.3s var(--ease-out) 0.75s both;
+}
+
+@keyframes panelRise {
+  from {
+    opacity: 0;
+    translate: 0 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation-name: fadeIn;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
