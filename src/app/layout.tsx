@@ -47,6 +47,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html
       suppressHydrationWarning
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${playfair.variable} ${inter.variable} ${overpass.variable} ${gilda.variable} ${sansation.variable}`}
     >
       <head>
