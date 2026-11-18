@@ -1,0 +1,114 @@
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  border-radius: calc(var(--u) * 10);
+  overflow: hidden;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(20px, calc(var(--u) * 30), 30px);
+  padding: clamp(40px, calc(var(--u) * 110), 110px);
+}
+
+.title {
+  font-family: var(--font-playfair);
+  font-weight: 400;
+  font-size: max(44px, calc(var(--u) * 116));
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 620px;
+}
+
+.list li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-block: 14px;
+  border-bottom: 1px solid rgba(243, 238, 228, 0.14);
+  font-size: max(15px, calc(var(--u) * 18));
+  color: var(--cream);
+}
+
+.tick {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  padding: 4px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+
+.photo {
+  position: relative;
+  min-height: 420px;
+  background: var(--dark);
+}
+
+.photo img {
+  object-fit: cover;
+}
+
+/* A round gold label on the photo. */
+.stamp {
+  position: absolute;
+  right: clamp(16px, calc(var(--u) * 40), 40px);
+  bottom: clamp(16px, calc(var(--u) * 40), 40px);
+  display: grid;
+  place-content: center;
+  width: max(120px, calc(var(--u) * 170));
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--font-overpass), sans-serif;
+  font-size: max(11px, calc(var(--u) * 13));
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+  animation: bob 5s ease-in-out infinite;
+}
+
+.stamp span {
+  display: block;
+  font-family: var(--font-playfair);
+  font-size: 1.9em;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+@keyframes bob {
+  50% {
+    translate: 0 -8px;
+    rotate: -4deg;
+  }
+}
+
+@media (max-width: 899px) {
+  .card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .photo {
+    order: -1;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp {
+    animation: none;
+  }
+}

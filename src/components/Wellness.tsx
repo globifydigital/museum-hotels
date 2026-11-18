@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { WELLNESS } from "@/data/site";
 import { delay } from "@/lib/reveal";
 import styles from "./Wellness.module.css";
@@ -13,9 +14,9 @@ export default function Wellness() {
           <h2 className={`${styles.title} blur-text`} id="wellness-title" style={delay(150)}>
             OUR WELLNESS EXPERIENCE
           </h2>
-          <a href="#" className={`${styles.button} reveal`} style={delay(300)}>
+          <Link href="/wellness" className={`${styles.button} reveal`} style={delay(300)}>
             SEE OUR SERVICES
-          </a>
+          </Link>
         </div>
       </div>
 

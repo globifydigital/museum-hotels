@@ -1,0 +1,131 @@
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr);
+  align-items: end;
+  gap: 24px calc(var(--u) * 150);
+}
+
+.title {
+  margin-top: clamp(16px, calc(var(--u) * 26), 26px);
+}
+
+.intro {
+  max-width: 520px;
+}
+
+/* One tall feature tile on the left, a 2 × 2 grid of smaller tiles on the right. */
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: repeat(2, clamp(220px, calc(var(--u) * 380), 380px));
+  gap: calc(var(--u) * 24);
+  margin-top: clamp(40px, calc(var(--u) * 80), 80px);
+  padding: 0;
+  list-style: none;
+}
+
+.tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: calc(var(--u) * 10);
+  background: var(--dark);
+  color: var(--cream);
+}
+
+.tile:first-child {
+  grid-row: span 2;
+}
+
+.tile img {
+  object-fit: cover;
+  transition: transform 1.4s var(--ease-out);
+}
+
+.tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, 0.72) 100%);
+  transition: opacity 0.5s ease;
+}
+
+.tile:hover img {
+  transform: scale(1.06);
+}
+
+.caption {
+  position: absolute;
+  left: clamp(16px, calc(var(--u) * 30), 30px);
+  right: clamp(16px, calc(var(--u) * 30), 30px);
+  bottom: clamp(16px, calc(var(--u) * 26), 26px);
+  z-index: 1;
+}
+
+.tileTitle {
+  font-family: var(--font-playfair);
+  font-weight: 400;
+  font-size: max(22px, calc(var(--u) * 32));
+  line-height: 1.15;
+}
+
+.tile:first-child .tileTitle {
+  font-size: max(28px, calc(var(--u) * 56));
+}
+
+.note {
+  margin-top: 6px;
+  font-size: max(14px, calc(var(--u) * 15));
+  line-height: 1.5;
+  color: rgba(243, 238, 228, 0.86);
+}
+
+/* On hover devices the note slides up into view. */
+@media (hover: hover) and (min-width: 768px) {
+  .note {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.5s var(--ease-out),
+      opacity 0.4s ease;
+  }
+
+  .tile:hover .note {
+    max-height: 4em;
+    opacity: 1;
+  }
+
+  .tile:first-child .note {
+    max-height: none;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1199px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-auto-rows: 240px;
+  }
+
+  .tile:first-child {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    height: 380px;
+  }
+}
+
+@media (max-width: 767px) {
+  .head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .tile:first-child {
+    height: 300px;
+  }
+}

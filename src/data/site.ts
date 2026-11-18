@@ -6,15 +6,15 @@
 export type Link = { label: string; href: string };
 
 export const NAV_LINKS: Link[] = [
-  { label: "Home", href: "#top" },
-  { label: "about", href: "#about" },
-  { label: "stay", href: "#stay" },
-  { label: "offers", href: "#" },
-  { label: "destinations", href: "#destinations" },
-  { label: "attractions", href: "#settings" },
-  { label: "restaurant", href: "#restaurant" },
-  { label: "events", href: "#" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "about", href: "/about" },
+  { label: "stay", href: "/stay" },
+  { label: "offers", href: "/stay#offer" },
+  { label: "destinations", href: "/destinations" },
+  { label: "attractions", href: "/destinations#attractions" },
+  { label: "restaurant", href: "/restaurant" },
+  { label: "events", href: "/events" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 /** Set NEXT_PUBLIC_BOOKING_URL to the booking engine URL to make "Book now" submit to it. */
@@ -219,33 +219,17 @@ export const WELLNESS = [
 
 export type Faq = { question: string; answer: string; placeholder?: boolean };
 
-export const FAQS: Faq[] = [
-  {
-    question: "How far is Dinso Resort & Villas Phuket from Phuket International Airport?",
-    answer:
-      "The distance from Phuket International Airport to our resort is approximately 35-40 kilometers. Depending on traffic conditions, the drive can take up to 1 hour and 15 minutes.",
-  },
-  { question: "How close is Dinso Resort & Villas Phuket to Patong Beach?", answer: "Answer coming soon.", placeholder: true },
-  { question: "When is the best time to visit Dinso Resort & Villas Phuket?", answer: "Answer coming soon.", placeholder: true },
-  {
-    question: "Are there any tourist attractions nearby Dinso Resort & Villas Phuket?",
-    answer: "Answer coming soon.",
-    placeholder: true,
-  },
-  {
-    question: "What excursions or activities are provided at Dinso Resort & Villas Phuket?",
-    answer: "Answer coming soon.",
-    placeholder: true,
-  },
-];
+export const FAQS: Faq[] = [];
 
 export const FOOTER_LINKS: Link[] = [
-  { label: "Home", href: "#top" },
-  { label: "Accommodation", href: "#stay" },
-  { label: "Dining", href: "#restaurant" },
-  { label: "Offers", href: "#" },
-  { label: "Experiences", href: "#settings" },
-  { label: "Newsroom", href: "#" },
-  { label: "Sitemap", href: "#" },
+  { label: "Home", href: "/" },
+  { label: "Accommodation", href: "/stay" },
+  { label: "Dining", href: "/restaurant" },
+  { label: "Wellness", href: "/wellness" },
+  { label: "Offers", href: "/stay#offer" },
+  { label: "Destinations", href: "/destinations" },
+  { label: "Events", href: "/events" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Contact", href: "/contact" },
 ];
 

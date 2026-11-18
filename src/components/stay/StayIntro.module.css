@@ -1,0 +1,62 @@
+.statement {
+  max-width: 30ch;
+  margin-top: clamp(20px, calc(var(--u) * 34), 34px);
+  font-family: var(--font-playfair);
+  font-weight: 400;
+  font-size: max(30px, calc(var(--u) * 70));
+  line-height: 1.16;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: calc(var(--u) * 150);
+  margin-top: clamp(48px, calc(var(--u) * 100), 100px);
+}
+
+.copy {
+  max-width: 620px;
+  padding-top: clamp(0px, calc(var(--u) * 40), 40px);
+}
+
+/* The source photos are 500 px wide, so they stay at about that size. */
+.photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--u) * 30);
+  max-width: 860px;
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  border-radius: calc(var(--u) * 10);
+  overflow: hidden;
+  background: var(--dark);
+}
+
+.photo img {
+  object-fit: cover;
+}
+
+.photoLow {
+  margin-top: calc(var(--u) * 120);
+}
+
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .photos {
+    gap: 12px;
+  }
+
+  .photoLow {
+    margin-top: 48px;
+  }
+}

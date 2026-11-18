@@ -236,3 +236,30 @@ img {
   opacity: 1;
   filter: blur(0);
 }
+
+/* ---------------------------------------------------------------------------------------------
+ * Parallax: a photo layer taller than its frame drifts as the frame crosses the viewport. Uses a
+ * scroll-driven animation (no JS); browsers without view timelines, and reduced motion, keep it still.
+ * ------------------------------------------------------------------------------------------- */
+.parallax-layer {
+  position: absolute;
+  inset: -9% 0;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .parallax-layer {
+      animation: parallax-shift linear both;
+      animation-timeline: view();
+    }
+  }
+}
+
+@keyframes parallax-shift {
+  from {
+    translate: 0 -7%;
+  }
+  to {
+    translate: 0 7%;
+  }
+}

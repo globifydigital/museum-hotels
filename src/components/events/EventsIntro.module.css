@@ -1,0 +1,38 @@
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 56px calc(var(--u) * 150);
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 819 / 1024;
+  max-width: 620px;
+  border-radius: calc(var(--u) * 10);
+  overflow: hidden;
+  background: var(--dark);
+}
+
+.photo img {
+  object-fit: cover;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(20px, calc(var(--u) * 34), 34px);
+}
+
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .photo {
+    max-width: none;
+    aspect-ratio: 4 / 3;
+    order: 2;
+  }
+}

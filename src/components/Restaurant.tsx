@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FOOD_IMAGES, RESTAURANT_PARAGRAPHS } from "@/data/site";
 import styles from "./Restaurant.module.css";
 
@@ -37,9 +38,9 @@ export default function Restaurant() {
         ))}
       </ul>
 
-      <a href="#" className={`${styles.menuLink} reveal`}>
+      <Link href="/restaurant" className={`${styles.menuLink} reveal`}>
         The full menu and a table →
-      </a>
+      </Link>
     </section>
   );
 }

@@ -1,0 +1,81 @@
+.title {
+  margin-top: clamp(16px, calc(var(--u) * 26), 26px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(var(--u) * 40);
+  margin-top: clamp(40px, calc(var(--u) * 80), 80px);
+}
+
+.card {
+  position: relative;
+  aspect-ratio: 1552 / 1100;
+  border-radius: calc(var(--u) * 10);
+  overflow: hidden;
+  background: var(--dark);
+  color: var(--cream);
+}
+
+.card img {
+  object-fit: cover;
+  transition: transform 1.4s var(--ease-out);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.72) 100%);
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+/* The body copy slides up beneath the title on hover (always shown on touch screens). */
+.caption {
+  position: absolute;
+  left: clamp(20px, calc(var(--u) * 44), 44px);
+  right: clamp(20px, calc(var(--u) * 44), 44px);
+  bottom: clamp(20px, calc(var(--u) * 40), 40px);
+  z-index: 1;
+}
+
+.cardTitle {
+  font-family: var(--font-playfair);
+  font-weight: 400;
+  font-size: max(26px, calc(var(--u) * 48));
+  line-height: 1.1;
+}
+
+.cardBody {
+  max-width: 520px;
+  margin-top: 10px;
+  font-size: max(15px, calc(var(--u) * 17));
+  line-height: 1.6;
+  color: rgba(243, 238, 228, 0.86);
+}
+
+@media (hover: hover) {
+  .cardBody {
+    opacity: 0;
+    translate: 0 12px;
+    transition:
+      opacity 0.5s ease,
+      translate 0.6s var(--ease-out);
+  }
+
+  .card:hover .cardBody {
+    opacity: 1;
+    translate: none;
+  }
+}
+
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+}

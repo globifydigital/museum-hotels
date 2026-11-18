@@ -105,7 +105,8 @@
 }
 
 .links a:hover::after,
-.links a:focus-visible::after {
+.links a:focus-visible::after,
+.links a[aria-current="page"]::after {
   transform: scaleX(1);
   transform-origin: left;
 }
@@ -224,6 +225,10 @@
     letter-spacing: 3px;
     text-transform: uppercase;
     color: #fff;
+  }
+
+  .sheet a[aria-current="page"] {
+    color: var(--gold);
   }
 
   .sheet a:last-child {

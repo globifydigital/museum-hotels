@@ -1,0 +1,65 @@
+/* "In every room": a ruled row of line icons. */
+.row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 24px calc(var(--u) * 80);
+  margin-top: clamp(64px, calc(var(--u) * 130), 130px);
+  padding-block: clamp(28px, calc(var(--u) * 44), 44px);
+  border-block: 1px solid var(--ink-line);
+}
+
+.title {
+  font-family: var(--font-overpass), sans-serif;
+  font-weight: 500;
+  font-size: max(12px, calc(var(--u) * 14));
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bronze);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  font-size: max(13px, calc(var(--u) * 15));
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.icon {
+  width: max(30px, calc(var(--u) * 40));
+  height: max(30px, calc(var(--u) * 40));
+  color: var(--bronze);
+  transition: translate 0.4s var(--ease-out), color 0.3s ease;
+}
+
+.item:hover .icon {
+  translate: 0 -4px;
+  color: var(--ink);
+}
+
+@media (max-width: 1199px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 28px;
+  }
+}
+
+@media (max-width: 479px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

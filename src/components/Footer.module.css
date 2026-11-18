@@ -1,162 +1,232 @@
-/* 1920 × 739 black footer; positions are Figma coordinates relative to its top-left. */
+/* Black footer, 739 tall at the 1920 design: four columns, a ruled bottom bar, then the giant wordmark. */
 .footer {
   position: relative;
-  height: calc(var(--u) * 739);
+  min-height: calc(var(--u) * 739);
+  padding: max(56px, calc(var(--u) * 96)) 0 calc(var(--u) * 300);
   overflow: hidden;
   background: #000;
   color: #fff;
 }
 
-.contact,
-.links {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+.top,
+.bottom {
+  width: calc(var(--u) * 1800);
+  margin-inline: auto;
 }
 
-.contact > *,
-.links > *,
-.rewards {
-  position: absolute;
-  pointer-events: auto;
+.top {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1.05fr 1.1fr;
+  gap: calc(var(--u) * 70);
 }
 
-.heading {
-  font-weight: 500;
-  font-size: max(13px, calc(var(--u) * 20));
-  line-height: calc(var(--u) * 28);
-  letter-spacing: calc(var(--u) * 2.61);
-  text-transform: uppercase;
-  white-space: nowrap;
+/* ---------- Brand ---------- */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.name {
-  top: calc(var(--u) * 77);
-  left: calc(var(--u) * 60.72);
+.logo {
+  position: relative;
+  width: max(46px, calc(var(--u) * 60));
+  aspect-ratio: 280 / 316;
+  transition: opacity 0.3s ease;
 }
 
-.location {
-  top: calc(var(--u) * 126.17);
-  left: calc(var(--u) * 61.68);
+.logo:hover {
+  opacity: 0.8;
 }
 
-.reservations {
-  top: calc(var(--u) * 174.54);
-  left: calc(var(--u) * 60.72);
+.logo img {
+  object-fit: contain;
 }
 
-.gold {
-  left: calc(var(--u) * 62);
-  font-weight: 500;
-  font-size: max(12px, calc(var(--u) * 18));
-  line-height: calc(var(--u) * 28);
+.brandName {
+  margin-top: max(18px, calc(var(--u) * 26));
+  font-family: var(--font-playfair);
+  font-size: max(20px, calc(var(--u) * 28));
+  line-height: 1.25;
+  color: var(--cream);
+}
+
+.tagline {
+  margin-top: 6px;
+  font-family: var(--font-playfair);
+  font-style: italic;
+  font-size: max(15px, calc(var(--u) * 18));
   color: var(--sand);
-  white-space: nowrap;
-  transition: color 0.25s ease;
-}
-
-.gold:hover {
-  color: #fff;
-}
-
-.phone {
-  top: calc(var(--u) * 225.1);
-}
-
-.email {
-  top: calc(var(--u) * 263.1);
-}
-
-.map {
-  top: calc(var(--u) * 326);
-  left: calc(var(--u) * 62);
-  height: calc(var(--u) * 21);
-  border-bottom: 2px solid var(--sand);
-  font-weight: 500;
-  font-size: max(12px, calc(var(--u) * 18));
-  line-height: calc(var(--u) * 18);
-  text-transform: uppercase;
-  color: var(--sand);
-  white-space: nowrap;
-  transition:
-    color 0.25s ease,
-    border-color 0.25s ease;
-}
-
-.map:hover {
-  color: #fff;
-  border-color: #fff;
 }
 
 .signUp {
-  top: calc(var(--u) * 390);
-  left: calc(var(--u) * 60);
-  width: calc(var(--u) * 249);
-  height: calc(var(--u) * 57);
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  border: 2px solid #fff;
+  gap: 12px;
+  margin-top: max(24px, calc(var(--u) * 34));
+  padding: max(12px, calc(var(--u) * 15)) max(18px, calc(var(--u) * 24));
+  border: 1px solid rgba(243, 238, 228, 0.35);
+  border-radius: 999px;
+  font-family: var(--font-overpass), sans-serif;
   font-weight: 500;
-  font-size: max(12px, calc(var(--u) * 15));
-  line-height: calc(var(--u) * 18);
+  font-size: max(11px, calc(var(--u) * 13));
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--cream);
   transition:
-    background-color 0.25s ease,
-    color 0.25s ease;
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease;
+}
+
+.signUp span {
+  transition: translate 0.35s var(--ease-out);
 }
 
 .signUp:hover {
-  background: #fff;
+  background: var(--gold);
+  border-color: var(--gold);
   color: #000;
 }
 
-/* With the social icons gone, About starts on the same line as the hotel name. */
-.about {
-  top: calc(var(--u) * 77);
-  left: calc(var(--u) * 854.76);
+.signUp:hover span {
+  translate: 4px 0;
 }
 
-.list {
-  top: calc(var(--u) * 124.3);
-  left: calc(var(--u) * 854.76);
+/* ---------- Columns ---------- */
+.col {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--u) * 11.49);
+  align-items: flex-start;
+  gap: max(14px, calc(var(--u) * 18));
 }
 
-.list li:nth-child(5) {
-  margin-top: calc(var(--u) * 2.92);
-}
-
-.list a {
-  display: block;
+/* Small gold caps with a hairline running to the column edge. */
+.label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  align-self: stretch;
+  margin-bottom: max(6px, calc(var(--u) * 10));
+  font-family: var(--font-overpass), sans-serif;
   font-weight: 500;
-  font-size: max(12px, calc(var(--u) * 18));
-  line-height: calc(var(--u) * 21.43);
+  font-size: max(11px, calc(var(--u) * 13));
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  white-space: nowrap;
-  transition: color 0.25s ease;
-}
-
-.list a:hover {
   color: var(--sand);
 }
 
-/* First line centred on the same line as the column headings. */
-.rewards {
-  top: calc(var(--u) * 79.75);
-  right: calc(var(--u) * 60.74);
-  font-size: max(11px, calc(var(--u) * 15));
-  line-height: calc(var(--u) * 22.5);
-  text-align: right;
+.label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(243, 238, 228, 0.14);
+}
+
+.address {
+  font-style: normal;
+  font-size: max(15px, calc(var(--u) * 17));
+  line-height: 1.75;
+  color: rgba(243, 238, 228, 0.72);
+}
+
+/* Links whose underline is drawn in from the left on hover. */
+.underline,
+.contactLink {
+  background: linear-gradient(currentColor, currentColor) left bottom / 0 1px no-repeat;
+  transition:
+    background-size 0.5s var(--ease-out),
+    color 0.3s ease;
+}
+
+.underline {
+  padding-bottom: 3px;
+  font-family: var(--font-overpass), sans-serif;
+  font-weight: 500;
+  font-size: max(12px, calc(var(--u) * 13));
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  white-space: nowrap;
+  color: var(--cream);
+  background-size: 100% 1px;
+  background-image: linear-gradient(var(--sand), var(--sand));
+}
+
+.underline:hover {
+  color: var(--gold);
+}
+
+.contactLink {
+  padding-bottom: 2px;
+  font-family: var(--font-playfair);
+  font-size: max(20px, calc(var(--u) * 28));
+  line-height: 1.3;
+  color: var(--cream);
+}
+
+.contactLink:hover {
+  background-size: 100% 1px;
+  color: var(--gold);
+}
+
+.email {
+  font-size: max(16px, calc(var(--u) * 20));
+  overflow-wrap: anywhere;
+}
+
+/* Two columns of links; on hover a gold dash slides in and the label follows it. */
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: max(12px, calc(var(--u) * 16)) max(32px, calc(var(--u) * 56));
+}
+
+.list a {
+  display: inline-flex;
+  align-items: center;
+  font-size: max(13px, calc(var(--u) * 15));
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(243, 238, 228, 0.78);
+  transition: color 0.3s ease;
+}
+
+.list a::before {
+  content: "";
+  width: 0;
+  height: 1px;
+  margin-right: 0;
+  background: var(--gold);
+  transition:
+    width 0.4s var(--ease-out),
+    margin-right 0.4s var(--ease-out);
+}
+
+.list a:hover {
+  color: var(--gold);
+}
+
+.list a:hover::before {
+  width: 14px;
+  margin-right: 10px;
+}
+
+/* ---------- Bottom bar ---------- */
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: max(48px, calc(var(--u) * 80));
+  padding-top: max(18px, calc(var(--u) * 24));
+  border-top: 1px solid rgba(243, 238, 228, 0.14);
+  font-family: var(--font-overpass), sans-serif;
+  font-size: max(11px, calc(var(--u) * 12));
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(243, 238, 228, 0.5);
 }
 
 .wordmark {
   position: absolute;
-  top: calc(var(--u) * 645.54);
+  top: calc(100% - var(--u) * 93.46);
   left: calc(var(--u) * 954.64);
   width: calc(var(--u) * 1835.6);
   transform: translate(-50%, -50%);
@@ -234,86 +304,27 @@
 
 @media (max-width: 1199px) {
   .footer {
-    height: auto;
-    padding: 56px 16px 0;
-    display: grid;
+    min-height: 0;
+    padding: 64px 16px 0;
+  }
+
+  .top,
+  .bottom {
+    width: auto;
+  }
+
+  .top {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px;
+    gap: 44px 32px;
   }
 
-  .contact,
-  .links {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    pointer-events: auto;
-  }
-
-  .contact > *,
-  .links > *,
-  .rewards {
-    position: static;
-    inset: auto;
-  }
-
-  .heading {
-    font-size: 15px;
-    line-height: 1.6;
-    letter-spacing: 2px;
-    white-space: normal;
-  }
-
-  .location,
-  .reservations {
-    margin-top: 14px;
-  }
-
-  .gold {
-    margin-top: 6px;
-    font-size: 15px;
-    line-height: 1.6;
-    white-space: normal;
-  }
-
-  .map {
-    margin-top: 16px;
-    height: auto;
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .signUp {
-    margin-top: 24px;
-    width: 200px;
-    height: 48px;
-    font-size: 14px;
-  }
-
-  .list {
-    margin-top: 10px;
-    gap: 10px;
-  }
-
-  .list li:nth-child(5) {
-    margin-top: 0;
-  }
-
-  .list a {
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .rewards {
+  .brand {
     grid-column: 1 / -1;
-    font-size: 13px;
-    line-height: 1.6;
-    text-align: left;
-    white-space: normal;
   }
 
-  .rewards br {
-    display: none;
+  .bottom {
+    flex-wrap: wrap;
+    margin-top: 48px;
   }
 
   .wordmark {
@@ -333,7 +344,7 @@
 }
 
 @media (max-width: 599px) {
-  .footer {
+  .top {
     grid-template-columns: minmax(0, 1fr);
   }
 }

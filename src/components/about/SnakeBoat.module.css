@@ -1,0 +1,139 @@
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* The boat's name runs slowly across the top of the section in outlined type. */
+.ghost {
+  position: absolute;
+  top: clamp(24px, calc(var(--u) * 40), 40px);
+  left: 0;
+  font-family: var(--font-playfair);
+  font-size: max(64px, calc(var(--u) * 170));
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(225, 210, 110, 0.16);
+  pointer-events: none;
+  animation: drift 60s linear infinite paused;
+}
+
+.ghost:global(.in-view) {
+  animation-play-state: running;
+}
+
+@keyframes drift {
+  to {
+    translate: -50% 0;
+  }
+}
+
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: calc(var(--u) * 150);
+  padding-top: clamp(60px, calc(var(--u) * 130), 130px);
+}
+
+/* Two photos stepped against each other. */
+.photos {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: calc(var(--u) * 30);
+}
+
+.photo {
+  position: relative;
+  border-radius: calc(var(--u) * 10);
+  overflow: hidden;
+  background: #2a2620;
+}
+
+.photo img {
+  object-fit: cover;
+}
+
+/* The source photos are 500 × 333, so they stay landscape and modest in size. */
+.photoTall,
+.photoWide {
+  aspect-ratio: 3 / 2;
+}
+
+.photoWide {
+  margin-top: calc(var(--u) * 170);
+}
+
+.note {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 48%;
+  font-family: var(--font-overpass), sans-serif;
+  font-size: max(11px, calc(var(--u) * 13));
+  line-height: 1.6;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream-muted);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(20px, calc(var(--u) * 34), 34px);
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(28px, calc(var(--u) * 64), 64px);
+  padding-top: clamp(20px, calc(var(--u) * 30), 30px);
+  border-top: 1px solid rgba(243, 238, 228, 0.18);
+  width: 100%;
+}
+
+.facts dt {
+  font-family: var(--font-overpass), sans-serif;
+  font-size: max(11px, calc(var(--u) * 12));
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream-muted);
+}
+
+.facts dd {
+  margin-top: 6px;
+  font-family: var(--font-playfair);
+  font-size: max(28px, calc(var(--u) * 48));
+  line-height: 1.1;
+  color: var(--gold);
+}
+
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+  }
+
+  .photos {
+    gap: 14px;
+  }
+
+  .photoWide {
+    margin-top: 80px;
+  }
+
+  .note {
+    width: 46%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ghost {
+    animation: none;
+  }
+}

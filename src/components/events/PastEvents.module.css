@@ -1,0 +1,82 @@
+.section {
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, calc(var(--u) * 26), 26px);
+  text-align: center;
+}
+
+.viewport {
+  margin-top: clamp(40px, calc(var(--u) * 80), 80px);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 60s linear infinite paused;
+}
+
+.viewport:global(.in-view) .track {
+  animation-play-state: running;
+}
+
+.viewport:hover .track {
+  animation-play-state: paused;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 24);
+  padding-right: calc(var(--u) * 24);
+}
+
+/* Alternating portrait and landscape frames give the strip a rhythm. */
+.item {
+  position: relative;
+  flex: none;
+  width: clamp(200px, calc(var(--u) * 340), 340px);
+  aspect-ratio: 4 / 5;
+  border-radius: calc(var(--u) * 10);
+  overflow: hidden;
+  background: var(--dark);
+}
+
+.item:nth-child(3n + 1) {
+  width: clamp(300px, calc(var(--u) * 520), 520px);
+  aspect-ratio: 3 / 2;
+}
+
+.item img {
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-out);
+}
+
+.item:hover img {
+  transform: scale(1.06);
+}
+
+@keyframes marquee {
+  to {
+    translate: -50% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewport {
+    overflow-x: auto;
+  }
+
+  .track {
+    animation: none;
+    padding-inline: 16px;
+  }
+
+  .list[aria-hidden] {
+    display: none;
+  }
+}

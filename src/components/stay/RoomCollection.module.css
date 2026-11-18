@@ -1,0 +1,180 @@
+/* ---------- Featured room: wide photo, then name · story · specs in three columns ---------- */
+.featured {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, calc(var(--u) * 64), 64px);
+}
+
+.featuredPhoto {
+  position: relative;
+  aspect-ratio: 2065 / 800;
+  border-radius: calc(var(--u) * 10);
+  overflow: hidden;
+  background: var(--dark);
+}
+
+.featuredPhoto img {
+  object-fit: cover;
+  transition: transform 1.4s var(--ease-out);
+}
+
+.featured:hover .featuredPhoto img {
+  transform: scale(1.03);
+}
+
+.badge {
+  position: absolute;
+  top: clamp(14px, calc(var(--u) * 24), 24px);
+  left: clamp(14px, calc(var(--u) * 24), 24px);
+  padding: 8px 14px;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-overpass), sans-serif;
+  font-weight: 500;
+  font-size: max(10px, calc(var(--u) * 12));
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.featuredBody {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) minmax(0, 0.8fr);
+  align-items: start;
+  gap: 32px calc(var(--u) * 90);
+}
+
+.featuredTitle {
+  margin-top: 16px;
+}
+
+.featuredSide {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ---------- Collection header + filters ---------- */
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px 40px;
+}
+
+.headTitle {
+  margin-top: 16px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: max(42px, calc(var(--u) * 48));
+  padding: 0 18px;
+  border: 1px solid var(--ink-line);
+  border-radius: 999px;
+  font-size: max(13px, calc(var(--u) * 15));
+  color: var(--ink);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.filter:hover {
+  border-color: var(--ink);
+}
+
+.filter[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--gold);
+}
+
+.count {
+  font-family: var(--font-overpass), sans-serif;
+  font-size: 0.8em;
+  opacity: 0.6;
+}
+
+/* ---------- Room grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(40px, calc(var(--u) * 70), 70px) calc(var(--u) * 40);
+  margin-top: clamp(40px, calc(var(--u) * 80), 80px);
+}
+
+.cell {
+  display: flex;
+}
+
+/* Cards rise in one after another whenever the filter changes. */
+.cell > * {
+  flex: 1;
+  animation: cardIn 0.8s var(--ease-out) both;
+  animation-delay: calc(var(--i) * 70ms);
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    translate: 0 28px;
+  }
+}
+
+.featuredTitle a {
+  transition: color 0.3s ease;
+}
+
+.featuredTitle a:hover {
+  color: var(--bronze);
+}
+
+@media (max-width: 1199px) {
+  .featuredBody {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .featuredSide {
+    grid-column: 1 / -1;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .featuredPhoto {
+    aspect-ratio: 4 / 3;
+  }
+
+  .featuredBody {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell > * {
+    animation-name: fade;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}

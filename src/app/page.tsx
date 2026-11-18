@@ -1,6 +1,5 @@
 import About from "@/components/About";
 import Destinations from "@/components/Destinations";
-import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Restaurant from "@/components/Restaurant";
@@ -20,7 +19,6 @@ export default function HomePage() {
         <Settings />
         <Destinations />
         <Wellness />
-        <Faq />
       </main>
       <Footer />
       <RevealObserver />

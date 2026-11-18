@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { NAV_LINKS } from "@/data/site";
 import styles from "./Nav.module.css";
@@ -9,6 +11,9 @@ import styles from "./Nav.module.css";
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const button = useRef<HTMLButtonElement>(null);
+  const pathname = usePathname();
+  /** Page links ("/about") are marked current on their own page; section links ("/#restaurant") never are. */
+  const current = (href: string) => (href === pathname ? "page" : undefined);
 
   useEffect(() => {
     if (!open) return;
@@ -29,15 +34,15 @@ export default function Nav() {
   return (
     <header className={styles.bar}>
       <div className={styles.inner}>
-        <a href="#top" className={styles.logo} aria-label="Ginger House Museum Hotel, home">
+        <Link href="/" className={styles.logo} aria-label="Ginger House Museum Hotel, home">
           <Image src="/images/logo.png" alt="" fill sizes="76px" priority />
-        </a>
+        </Link>
 
         <nav className={styles.links} aria-label="Main">
           {NAV_LINKS.map((link) => (
-            <a key={link.label} href={link.href}>
+            <Link key={link.label} href={link.href} aria-current={current(link.href)}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -65,9 +70,9 @@ export default function Nav() {
         inert={!open}
       >
         {NAV_LINKS.map((link) => (
-          <a key={link.label} href={link.href} onClick={() => setOpen(false)}>
+          <Link key={link.label} href={link.href} aria-current={current(link.href)} onClick={() => setOpen(false)}>
             {link.label}
-          </a>
+          </Link>
         ))}
       </nav>
     </header>

@@ -1,0 +1,35 @@
+.line {
+  display: block;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+  vertical-align: top;
+}
+
+.word > span {
+  display: inline-block;
+  animation: wordUp 1.3s cubic-bezier(0.2, 0.75, 0.1, 1) both;
+  animation-delay: calc(var(--start, 0.35s) + var(--i) * 0.12s);
+}
+
+@keyframes wordUp {
+  from {
+    translate: 0 105%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word > span {
+    animation-name: fadeIn;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}

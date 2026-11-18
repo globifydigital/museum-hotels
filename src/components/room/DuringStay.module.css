@@ -1,0 +1,106 @@
+.title {
+  margin-top: clamp(16px, calc(var(--u) * 26), 26px);
+}
+
+.list {
+  margin-top: clamp(40px, calc(var(--u) * 80), 80px);
+  border-top: 1px solid rgba(243, 238, 228, 0.16);
+}
+
+.list li {
+  border-bottom: 1px solid rgba(243, 238, 228, 0.16);
+}
+
+/* A row per destination: thumbnail, title + line, arrow. */
+.item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(18px, calc(var(--u) * 50), 50px);
+  padding-block: clamp(18px, calc(var(--u) * 30), 30px);
+}
+
+.photo {
+  position: relative;
+  width: clamp(96px, calc(var(--u) * 200), 200px);
+  aspect-ratio: 4 / 3;
+  border-radius: calc(var(--u) * 8);
+  overflow: hidden;
+  background: #2a2620;
+  transition: width 0.7s var(--ease-out);
+}
+
+.photo img {
+  object-fit: cover;
+  transition: transform 1s var(--ease-out);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: translate 0.6s var(--ease-out);
+}
+
+.itemTitle {
+  font-family: var(--font-playfair);
+  font-size: max(22px, calc(var(--u) * 46));
+  line-height: 1.15;
+  color: var(--cream);
+  transition: color 0.3s ease;
+}
+
+.itemBody {
+  font-size: max(14px, calc(var(--u) * 17));
+  line-height: 1.6;
+  color: var(--cream-muted);
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  width: clamp(44px, calc(var(--u) * 64), 64px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(243, 238, 228, 0.3);
+  border-radius: 50%;
+  font-size: max(18px, calc(var(--u) * 22));
+  color: var(--cream);
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    rotate 0.5s var(--ease-out);
+}
+
+.item:hover .photo {
+  width: clamp(110px, calc(var(--u) * 260), 260px);
+}
+
+.item:hover .photo img {
+  transform: scale(1.08);
+}
+
+.item:hover .text {
+  translate: 6px 0;
+}
+
+.item:hover .itemTitle {
+  color: var(--gold);
+}
+
+.item:hover .arrow {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+  rotate: -45deg;
+}
+
+@media (max-width: 599px) {
+  .item {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .arrow {
+    display: none;
+  }
+}

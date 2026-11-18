@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import { MORE_ROOMS, ROOMS } from "@/data/site";
 import { delay } from "@/lib/reveal";
@@ -120,9 +121,9 @@ export default function Rooms() {
               ))}
             </dl>
             <div className={styles.links}>
-              <a href="#" className={styles.see}>
+              <Link href={`/stay/${room.id}`} className={styles.see}>
                 See the room
-              </a>
+              </Link>
               <a href="#booking" className={styles.book}>
                 Book this room
               </a>

@@ -1,0 +1,39 @@
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(18px, calc(var(--u) * 30), 30px);
+  text-align: center;
+}
+
+.mark {
+  width: max(52px, calc(var(--u) * 72));
+  fill: none;
+  stroke: var(--bronze);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+/* The petals draw themselves once the mark scrolls into view. */
+.mark path {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  transition: stroke-dashoffset 2s var(--ease-out);
+}
+
+.mark path:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.mark path:nth-child(3) {
+  transition-delay: 0.35s;
+}
+
+.mark:global(.is-visible) path,
+:global(html:not(.js)) .mark path {
+  stroke-dashoffset: 0;
+}
+
+.body {
+  max-width: 640px;
+}

@@ -1,0 +1,33 @@
+.specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--ink-line);
+}
+
+.specs dt {
+  font-family: var(--font-overpass), sans-serif;
+  font-size: max(10px, calc(var(--u) * 11));
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.specs dd {
+  margin-top: 4px;
+  font-size: max(15px, calc(var(--u) * 17));
+  color: var(--ink);
+}
+
+.light {
+  border-top-color: rgba(243, 238, 228, 0.18);
+}
+
+.light dt {
+  color: var(--cream-muted);
+}
+
+.light dd {
+  color: var(--cream);
+}

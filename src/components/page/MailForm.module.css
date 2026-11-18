@@ -1,0 +1,151 @@
+.form {
+  --fg: var(--ink);
+  --muted: var(--ink-muted);
+  --rule: var(--ink-line);
+  --accent: var(--bronze);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, calc(var(--u) * 44), 44px);
+}
+
+.dark {
+  --fg: var(--cream);
+  --muted: var(--cream-muted);
+  --rule: rgba(243, 238, 228, 0.22);
+  --accent: var(--gold);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(26px, calc(var(--u) * 36), 36px) clamp(20px, calc(var(--u) * 36), 36px);
+}
+
+.field {
+  position: relative;
+  grid-column: 1 / -1;
+}
+
+.half {
+  grid-column: span 1;
+}
+
+/* Underlined fields; the label sits inside and floats up on focus or once filled. */
+.control {
+  display: block;
+  width: 100%;
+  padding: 22px 0 10px;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  background: transparent;
+  font-size: max(16px, calc(var(--u) * 18));
+  color: var(--fg);
+  outline: none;
+  appearance: none;
+  color-scheme: light;
+}
+
+.dark .control {
+  color-scheme: dark;
+}
+
+textarea.control {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+select.control {
+  padding-right: 28px;
+  background: linear-gradient(45deg, transparent 50%, var(--muted) 50%) right 6px center / 6px 6px no-repeat,
+    linear-gradient(-45deg, transparent 50%, var(--muted) 50%) right 0 center / 6px 6px no-repeat;
+  cursor: pointer;
+}
+
+select.control:invalid {
+  color: transparent;
+}
+
+select.control option {
+  color: var(--ink);
+}
+
+.label {
+  position: absolute;
+  left: 0;
+  top: 22px;
+  font-size: max(16px, calc(var(--u) * 18));
+  color: var(--muted);
+  pointer-events: none;
+  transform-origin: left top;
+  transition:
+    translate 0.3s var(--ease-out),
+    scale 0.3s var(--ease-out),
+    color 0.3s ease;
+}
+
+.label span {
+  color: var(--accent);
+}
+
+.control:focus + .label,
+.control:not(:placeholder-shown) + .label,
+.labelUp {
+  translate: 0 -22px;
+  scale: 0.72;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.control:focus + .label {
+  color: var(--accent);
+}
+
+/* A gold line draws across under the focused field. */
+.line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+
+textarea.control ~ .line {
+  bottom: 6px;
+}
+
+.control:focus ~ .line {
+  transform: scaleX(1);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+}
+
+.note {
+  flex: 1;
+  min-width: 220px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.note a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 599px) {
+  .half {
+    grid-column: 1 / -1;
+  }
+}

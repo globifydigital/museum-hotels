@@ -1,0 +1,112 @@
+.section {
+  overflow: hidden;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, calc(var(--u) * 26), 26px);
+  text-align: center;
+}
+
+.viewport {
+  margin-top: clamp(48px, calc(var(--u) * 90), 90px);
+  /* Cards fade out at both edges. */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 70s linear infinite paused;
+}
+
+.viewport:global(.in-view) .track {
+  animation-play-state: running;
+}
+
+.viewport:hover .track,
+.viewport:focus-within .track {
+  animation-play-state: paused;
+}
+
+.list {
+  display: flex;
+  gap: calc(var(--u) * 30);
+  padding-right: calc(var(--u) * 30);
+}
+
+.card {
+  flex: none;
+  display: flex;
+  width: clamp(290px, calc(var(--u) * 520), 520px);
+}
+
+.card figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  width: 100%;
+  padding: clamp(28px, calc(var(--u) * 44), 44px);
+  border-radius: calc(var(--u) * 10);
+  background: #fff;
+  transition: translate 0.4s var(--ease-out), box-shadow 0.4s ease;
+}
+
+.card figure:hover {
+  translate: 0 -6px;
+  box-shadow: 0 20px 40px rgba(29, 27, 24, 0.08);
+}
+
+.quote {
+  margin: 0;
+  font-family: var(--font-playfair);
+  font-size: max(18px, calc(var(--u) * 24));
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.quote::before {
+  content: "“";
+  display: block;
+  height: 0.6em;
+  font-size: 2.6em;
+  line-height: 1;
+  color: var(--bronze);
+}
+
+.name {
+  font-family: var(--font-overpass), sans-serif;
+  font-weight: 500;
+  font-size: max(12px, calc(var(--u) * 13));
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+@keyframes marquee {
+  to {
+    translate: -50% 0;
+  }
+}
+
+/* Reduced motion: a still row the visitor can scroll sideways. */
+@media (prefers-reduced-motion: reduce) {
+  .viewport {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .track {
+    animation: none;
+    padding-inline: 16px;
+  }
+
+  .list[aria-hidden] {
+    display: none;
+  }
+}

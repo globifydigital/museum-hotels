@@ -1,0 +1,52 @@
+.band {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(520px, calc(var(--u) * 900), 900px);
+  color: var(--cream);
+  isolation: isolate;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--dark);
+}
+
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 30%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.caption {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(16px, calc(var(--u) * 26), 26px);
+  padding-block: clamp(48px, calc(var(--u) * 110), 110px);
+}
+
+.title {
+  max-width: 16ch;
+  font-family: var(--font-playfair);
+  font-weight: 400;
+  font-size: max(36px, calc(var(--u) * 92));
+  line-height: 1.04;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.body {
+  max-width: 620px;
+  font-size: max(15px, calc(var(--u) * 18));
+  line-height: 1.75;
+  color: rgba(243, 238, 228, 0.86);
+}

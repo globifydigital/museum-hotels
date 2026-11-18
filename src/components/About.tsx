@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { delay } from "@/lib/reveal";
 import styles from "./About.module.css";
 
@@ -6,7 +7,7 @@ import styles from "./About.module.css";
 export default function About() {
   return (
     <section className={styles.about} id="about" aria-labelledby="about-title">
-      <a href="#about" className={`${styles.card} reveal-img`}>
+      <Link href="/about" className={`${styles.card} reveal-img`}>
         <Image
           src="/images/about-kathakali.jpg"
           alt="Two Kathakali performers in full costume on stage"
@@ -14,7 +15,7 @@ export default function About() {
           sizes="(max-width: 1199px) 100vw, 29vw"
         />
         <span className={`${styles.cardLabel} ${styles.cardLabelLeft}`}>ABOUT HOTEL</span>
-      </a>
+      </Link>
 
       <div className={styles.center}>
         <div className={styles.copy}>
@@ -33,13 +34,13 @@ export default function About() {
           <a href="#booking" className={styles.primary}>
             Booking Enquiry
           </a>
-          <a href="#" className={styles.secondary}>
+          <Link href="/about" className={styles.secondary}>
             More...
-          </a>
+          </Link>
         </div>
       </div>
 
-      <a href="#stay" className={`${styles.card} reveal-img`} style={delay(200)}>
+      <Link href="/stay" className={`${styles.card} reveal-img`} style={delay(200)}>
         <Image
           src="/images/about-fishing-nets.jpg"
           alt="A Chinese fishing net silhouetted against the sunset over the backwaters"
@@ -47,7 +48,7 @@ export default function About() {
           sizes="(max-width: 1199px) 100vw, 29vw"
         />
         <span className={`${styles.cardLabel} ${styles.cardLabelRight}`}>STAY WITH US</span>
-      </a>
+      </Link>
     </section>
   );
 }
