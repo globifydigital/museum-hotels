@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { enquiryHref } from "@/data/contact";
 import { SHOWROOM } from "@/data/restaurant";
 import { delay } from "@/lib/reveal";

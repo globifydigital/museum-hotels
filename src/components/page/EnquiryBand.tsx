@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { CONTACT, enquiryHref } from "@/data/contact";
 import { delay } from "@/lib/reveal";
 import s from "./Section.module.css";

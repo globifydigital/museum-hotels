@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useEffect, useRef, useState } from "react";
 import { DISHES } from "@/data/restaurant";
 import { delay } from "@/lib/reveal";

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import Link from "next/link";
 import { WELLNESS } from "@/data/site";
 import { delay } from "@/lib/reveal";

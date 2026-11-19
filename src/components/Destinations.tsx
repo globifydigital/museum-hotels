@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { DESTINATIONS } from "@/data/site";
 import { delay } from "@/lib/reveal";
 import heading from "./Settings.module.css";

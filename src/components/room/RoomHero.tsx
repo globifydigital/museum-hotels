@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import Link from "next/link";
 import { enquiryHref } from "@/data/contact";
 import { ALL_STAY_ROOMS, type StayRoom } from "@/data/stay";

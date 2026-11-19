@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import Link from "next/link";
 import { ALL_STAY_ROOMS, roomHref, type StayRoom } from "@/data/stay";
 import { delay } from "@/lib/reveal";

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { FORT_KOCHI } from "@/data/destinations";
 import { delay } from "@/lib/reveal";
 import s from "../page/Section.module.css";
