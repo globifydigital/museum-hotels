@@ -2,9 +2,13 @@
  * Ginger House — Figma file "museum-hotel", page "accepted", frame 213:23 (1920 wide).
  * Desktop layouts use design pixels × --u, so the page scales proportionally from 1200px to 1920px.
  * Below 1200px each section switches to a stacked tablet / mobile layout.
+ *
+ * The design keeps scaling, centred and full-bleed, up to 2560px (5K Macs / Studio Displays), then holds.
+ * At 1920px and below this is identical to min(100vw, 1920px); only 1920–2560 now scales up instead of
+ * flattening, which stops the pixel-positioned home page from drifting left on very wide screens.
  */
 :root {
-  --u: calc(min(100vw, 1920px) / 1920);
+  --u: calc(min(100vw, 2560px) / 1920);
 
   --gold: #e1d26e;
   --gold-hover: #d3c25a;

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import Link from "next/link";
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import { MORE_ROOMS, ROOMS } from "@/data/site";

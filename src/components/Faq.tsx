@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useId, useState } from "react";
 import { FAQS } from "@/data/site";
 import styles from "./Faq.module.css";

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import Link from "next/link";
 import { FOOD_IMAGES, RESTAURANT_PARAGRAPHS } from "@/data/site";
 import styles from "./Restaurant.module.css";

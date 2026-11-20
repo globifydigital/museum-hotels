@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useEffect, useRef, useState } from "react";
 import { PILLARS } from "@/data/wellness";
 import s from "../page/Section.module.css";

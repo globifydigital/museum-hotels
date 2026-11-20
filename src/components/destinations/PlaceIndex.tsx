@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useState, type CSSProperties } from "react";
 import { PLACE_FILTERS, PLACES } from "@/data/destinations";
 import { delay } from "@/lib/reveal";

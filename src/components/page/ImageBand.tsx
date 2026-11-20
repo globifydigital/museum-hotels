@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { delay } from "@/lib/reveal";
 import s from "./Section.module.css";
 import styles from "./ImageBand.module.css";

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { OCCASIONS } from "@/data/events";
 import { delay } from "@/lib/reveal";
 import s from "../page/Section.module.css";

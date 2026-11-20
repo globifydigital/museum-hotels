@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import Link from "next/link";
 import { ABOUT_INTRO, ABOUT_STATS } from "@/data/about";
 import { enquiryHref } from "@/data/contact";

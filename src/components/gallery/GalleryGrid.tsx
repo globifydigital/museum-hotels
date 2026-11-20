@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/ui/Img";
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { GALLERY, GALLERY_CATEGORIES } from "@/data/gallery";
 import { delay } from "@/lib/reveal";
